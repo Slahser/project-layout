@@ -1,8 +1,18 @@
 package main
 
-import "github.com/Slahser/coup-de-grace/internal/app/tt_practice"
+import (
+	"fmt"
+	"github.com/Slahser/coup-de-grace/internal/app/tt_practice"
+	"time"
+)
 
 func main() {
-	tt_practice.Tt()
-}
+	start := time.Now()
 
+	tt_practice.Tt1()
+	tt_practice.Tt2()
+
+	end := time.Now()
+	cost := end.Sub(start)
+	fmt.Printf("total cost is %s\n", cost)
+}
