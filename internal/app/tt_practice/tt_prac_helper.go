@@ -1,6 +1,9 @@
 package tt_practice
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func Abs(x int) int {
 	if x < 0 {
@@ -64,7 +67,26 @@ func Min(s ...int) int {
 	}
 	return min
 }
+func upPerson(p *Person) {
+	p.firstName = strings.ToUpper(p.firstName)
+	p.lastName = strings.ToUpper(p.lastName)
+}
 
+func upPr(p *Pr) {
+	p.firstName = strings.ToUpper(p.firstName)
+	p.lastName = strings.ToUpper(p.lastName)
+}
+
+type struct1 struct {
+	i1  int
+	f1  float32
+	str string
+}
+
+type Person struct {
+	firstName string
+	lastName  string
+}
 
 
 

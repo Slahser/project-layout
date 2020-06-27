@@ -11,6 +11,7 @@ func main() {
 
 	tt_practice.Tt1()
 	tt_practice.Tt2()
+	tt_practice.Tt3()
 
 	end := time.Now()
 	cost := end.Sub(start)
