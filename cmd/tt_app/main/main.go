@@ -40,7 +40,9 @@ func main() {
 	tt_practice.Tt1()
 	tt_practice.Tt2()
 	tt_practice.Tt3()
-
+	tt_practice.Tt4()
+	tt_practice.Tt5()
+	tt_practice.Tt6()
 	//=====
 	end := time.Now()
 	cost := end.Sub(start)

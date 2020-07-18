@@ -3,6 +3,7 @@ package tt_practice
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 func Abs(x int) int {
@@ -12,11 +13,13 @@ func Abs(x int) int {
 	return x
 }
 
-
 func ThreeValues() (int, int, float32) {
 	return 5, 6, 7.5
 }
 
+/**
+Function
+*/
 func MinMax(a int, b int) (min int, max int) {
 	if a < b {
 		min = a
@@ -88,16 +91,30 @@ type Person struct {
 	lastName  string
 }
 
+func LongWait() {
+	fmt.Println("Beginning longWait()")
+	time.Sleep(5 * 1e8) // sleep for 0.5 seconds
+	fmt.Println("End of longWait()")
+}
 
+func ShortWait() {
+	fmt.Println("Beginning shortWait()")
+	time.Sleep(2 * 1e8) // sleep for 0.2 seconds
+	fmt.Println("End of shortWait()")
+}
 
+func Pump1(ch chan int) {
+	for i := 0; ; i++ {
+		if i%4623127 == 0 {
+			ch <- i * 2
+		}
+	}
+}
 
-
-
-
-
-
-
-
-
-
-
+func Pump2(ch chan int) {
+	for i := 0; ; i++ {
+		if i%4623127 == 0 {
+			ch <- i + 5
+		}
+	}
+}
