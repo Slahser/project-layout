@@ -71,12 +71,12 @@ func Tt2() {
 	fmt.Printf("The capacity of slice1 is %d\n", cap(slice1))
 
 	//返回一个类型为 T 的初始值?
-	slace3 := make([]int, 5, 10)
-	fmt.Println(slace3)
+	slice3 := make([]int, 5, 10)
+	fmt.Println(slice3)
 	//new(T) 为每个新的类型 T 分配一片内存，初始化为 0 并且返回类型为 * T 的内存地址
 	//即数组的指针 &[]int
-	slace4 := new([10]int)[0:5]
-	fmt.Println(slace4)
+	slice4 := new([10]int)[0:5]
+	fmt.Println(slice4)
 
 	var slice5 []int = make([]int, 4)
 
@@ -84,6 +84,10 @@ func Tt2() {
 	slice5[1] = 2
 	slice5[2] = 3
 	slice5[3] = 4
+
+	for value := range slice5 {
+		fmt.Printf("Slice contains : %d\n", value)
+	}
 
 	for idx, value := range slice5 {
 		fmt.Printf("Slice at %d is: %d\n", idx, value)
@@ -108,6 +112,8 @@ func Tt2() {
 
 	if _, ok := mapLit["one"]; ok {
 		fmt.Printf("mapLit contains key one")
+	} else {
+		fmt.Printf("i like it ")
 	}
 
 	//map切片
@@ -125,7 +131,7 @@ func Tt2() {
 		"golf": 34, "hotel": 16, "indio": 87,
 		"juliet": 65, "kili": 43, "lima": 98}
 
-	//靠,强行切片
+	//强行切片,没有keyset么
 	keys := make([]string, len(barVal))
 	i := 0
 	for k, _ := range barVal {
@@ -139,8 +145,5 @@ func Tt2() {
 		fmt.Printf("Key: %v, Value: %v / ", k, barVal[k])
 	}
 	fmt.Println()
-
-
-
 
 }

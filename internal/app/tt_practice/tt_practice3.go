@@ -27,18 +27,17 @@ type Square struct {
 	side float32
 }
 
-func (sq *Square) Area() float32 {
-	return sq.side * sq.side
-}
-
 type Rectangle struct {
 	length, width float32
+}
+
+func (sq *Square) Area() float32 {
+	return sq.side * sq.side
 }
 
 func (r Rectangle) Area() float32 {
 	return r.length * r.width
 }
-
 
 func Tt3() {
 	Trace("tt_practice3#Tt3()")
@@ -48,7 +47,7 @@ func Tt3() {
 	ms.i1 = 10
 	ms.f1 = 15.5
 	ms.str = "Chris"
-	ms2 := &struct1{10, 15.5, "Chris"}
+	ms2 := &struct1{10, 15.5, "Chris2"}
 
 	fmt.Println(ms)  //结构体
 	fmt.Println(ms2) //结构体
