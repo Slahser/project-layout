@@ -3,16 +3,17 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/Slahser/coup-de-grace/internal/app/tt_practice"
-	"github.com/dimiro1/banner"
-	_ "github.com/dimiro1/banner/autoload"
-	"github.com/felixge/fgprof"
 	"io/ioutil"
 	"log"
 	"net/http"
 	_ "net/http/pprof"
 	"os"
 	"time"
+
+	"github.com/Slahser/coup-de-grace/internal/app/tt_practice"
+	"github.com/dimiro1/banner"
+	_ "github.com/dimiro1/banner/autoload"
+	"github.com/felixge/fgprof"
 )
 
 func main() {
@@ -22,7 +23,7 @@ func main() {
 		log.Println(http.ListenAndServe(":6060", nil))
 	}()
 
-	nyanFilePath := "/Users/Slahser/Documents/repository/go/pkg/mod/github.com/dimiro1/banner@v1.0.0/example/nyancat.txt"
+	nyanFilePath := "assets/nyancat.txt"
 	nyanBuf, err := ioutil.ReadFile(nyanFilePath)
 	if err != nil {
 		_, _ = fmt.Fprintf(os.Stderr, "File Error: %s\n", err)

@@ -1,0 +1,61 @@
+http:
+  routers:
+    tt-router:
+      entryPoints:
+        - "opurep"
+      # rule: "Host(`example.com`) || (Host(`example.org`) && Path(`/foo`)"
+      # rule: "PathPrefix(`/prefix1/`, `/prefix2/{cat:[a-z]+}/{id:[0-9]+}`)"
+      rule: "Path(`/pathtt`)"
+      middlewares:
+        - authentication
+      service: my-service-with-weight
+      priority: 1
+    tt-router2:
+      entryPoints:
+        - "opurep"
+      rule: "Path(`/pathtt`)"
+      service: my-service-with-weight
+      priority: 2
+
+  services:
+    my-service-with-weight-facade:
+      weighted:
+        services:
+        - name: tt-service-backend-kubeless
+          weight: 3
+        - name: tt-service-backend-nuclio
+          weight: 1
+    tt-service-backend-kubeless:
+      loadBalancer:
+        healthCheck:
+          scheme: http
+          port: 8080
+          path: /health
+          interval: "10s"
+          timeout: "3s"
+        servers:
+          - url: "http://private-ip-server-1/"
+          - url: "http://private-ip-server-2/"
+    tt-service-backend-nuclio:
+      loadBalancer:
+        healthCheck:
+          scheme: http
+          port: 8080
+          path: /health
+          interval: "10s"
+          timeout: "3s"
+        servers:
+          - url: "http://private-ip-server-1/"
+          - url: "http://private-ip-server-2/"
+
+
+
+
+
+# tcp:
+#   routers:
+#     to-database:
+#       entryPoints:
+#         - "mysql"
+#       rule: "HostSNI(`*`)"
+#       service: database

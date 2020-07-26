@@ -1,0 +1,19 @@
+## Static configuration
+entryPoints:
+  opurep:
+    address: ":8848"
+    forwardedHeaders:
+      insecure: true
+    transport:
+      respondingTimeouts:
+        readTimeout: 0
+        writeTimeout: 0
+        idleTimeout: 0
+      lifeCycle:
+        graceTimeOut: 30
+        requestAcceptGraceTimeout: 0
+      # http:
+      #   redirections:
+      #     entryPoint:
+      #       to: websecure
+      #       scheme: https

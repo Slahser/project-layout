@@ -1,0 +1,121 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: tt-addprefix
+  namespace: traefik-playground
+spec:
+  addPrefix:
+    prefix: /prett
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: tt-ratelimit
+  namespace: traefik-playground
+spec:
+  rateLimit:
+    average: 100
+    burst: 50
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: tt-retry
+  namespace: traefik-playground
+spec:
+  retry:
+    attempts: 4
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: TraefikService
+metadata:
+  name: tts-self-hosted
+  namespace: traefik-playground
+
+spec:
+  weighted:
+    services:
+      - kind: Service
+        name: whoami
+        namespace: traefik-playground
+        weight: 3
+        scheme: http
+        port: 80
+      - kind: Service
+        name: whoami-impl2
+        namespace: traefik-playground
+        weight: 2
+        scheme: http
+        port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: TraefikService
+metadata:
+  name: tts-cloud-hosted
+  namespace: traefik-playground
+
+spec:
+  weighted:
+    services:
+      - kind: Service
+        name: whoami
+        namespace: traefik-playground
+        weight: 3
+        scheme: http
+        port: 80
+      - kind: Service
+        name: whoami-impl2
+        namespace: traefik-playground
+        weight: 2
+        scheme: http
+        port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: TraefikService
+metadata:
+  name: tts
+  namespace: traefik-playground
+
+spec:
+  weighted:
+    services:
+      - kind: TraefikService
+        name: tts-self-hosted
+        namespace: traefik-playground
+        weight: 3
+      - kind: TraefikService
+        name: tts-cloud-hosted
+        namespace: traefik-playground
+        weight: 2
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tt-ingressroute
+  namespace: traefik-playground
+
+spec:
+  entryPoints:
+    - web
+
+  routes:
+    - kind: Rule
+      # rule: "Host(`example.com`) || (Host(`example.org`) && Path(`/foo`)"
+      # rule: "PathPrefix(`/prefix1/`, `/prefix2/{cat:[a-z]+}/{id:[0-9]+}`)"
+      match: Path(`/pathtt`)
+      priority: 12
+      middlewares:
+        - name: tt-addprefix
+          namespace: traefik-playground
+        - name: tt-ratelimit
+          namespace: traefik-playground
+        - name: tt-retry
+          namespace: traefik-playground
+      services:
+        - name: tts
+          namespace: traefik-playground
+          kind: TraefikService
