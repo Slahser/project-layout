@@ -13,7 +13,6 @@ import (
 	asciigraph "github.com/guptarohit/asciigraph"
 	table "github.com/jedib0t/go-pretty/table"
 	opts "github.com/jpillora/opts"
-	cli "github.com/urfave/cli/v2"
 )
 
 //go-prompt
@@ -116,21 +115,20 @@ func main() {
 	log.Printf("%+v", c)
 	//opts stop
 
-	//cli start most famous
-	//https://github.com/urfave/cli/blob/master/docs/v2/manual.md
-	app := &cli.App{
-		Name:  "boom",
-		Usage: "make an explosive entrance",
-		Action: func(c *cli.Context) error {
-			fmt.Println("boom! I say!")
-			return nil
-		},
-	}
+	//cobra start most famous
+	//https://github.com/spf13/cobra
 
-	if err := app.Run(os.Args); err != nil {
-		log.Fatal(err)
-	}
-	//cli stop
+	//cobra stop
+
+	//promptui start
+	//https://github.com/manifoldco/promptui
+
+	//promotui stop
+
+	//progressbar start
+	//https://github.com/cheggaaa/pb
+
+	//progressbar stop
 
 	//asciigraph start
 	data := []float64{3, 4, 9, 6, 2, 4, 5, 8, 5, 10, 2, 7, 2, 5, 6}
