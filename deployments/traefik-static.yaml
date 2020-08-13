@@ -1,6 +1,6 @@
 ## Static configuration
 entryPoints:
-  opurep:
+  my-ep:
     address: ":8848"
     forwardedHeaders:
       insecure: true

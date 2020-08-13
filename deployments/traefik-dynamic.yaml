@@ -2,7 +2,7 @@ http:
   routers:
     tt-router:
       entryPoints:
-        - "opurep"
+        - "my-ep"
       # rule: "Host(`example.com`) || (Host(`example.org`) && Path(`/foo`)"
       # rule: "PathPrefix(`/prefix1/`, `/prefix2/{cat:[a-z]+}/{id:[0-9]+}`)"
       rule: "Path(`/pathtt`)"
@@ -12,7 +12,7 @@ http:
       priority: 1
     tt-router2:
       entryPoints:
-        - "opurep"
+        - "my-ep"
       rule: "Path(`/pathtt`)"
       service: my-service-with-weight
       priority: 2
