@@ -22,6 +22,7 @@ func newWorkspaceInitCommandeer(workspaceCommandeer *workspaceCommandeer) *works
 		Short:   "Switch to specific workspace.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("here is a promptui integration,show current worksapce user id and wizard to fetch and switch to other sorkspace.")
+			//viper.BindPFlag("author", rootCmd.PersistentFlags().Lookup("author"))
 			return nil
 		},
 	}

@@ -1,6 +1,7 @@
 package ttctl
 
 import (
+	"encoding/json"
 	"fmt"
 
 	cobra "github.com/spf13/cobra"
@@ -21,7 +22,7 @@ func newWorkspaceShowCommandeer(workspaceCommandeer *workspaceCommandeer) *works
 		Aliases: []string{"ws"},
 		Short:   "Switch to specific workspace.",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Printf("here is a promptui integration,show current worksapce user id and wizard to fetch and switch to other sorkspace.")
+			show()
 			return nil
 		},
 	}
@@ -29,4 +30,11 @@ func newWorkspaceShowCommandeer(workspaceCommandeer *workspaceCommandeer) *works
 	commandeer.cmd = cmd
 
 	return commandeer
+}
+
+func show() {
+	mockedWorkspaceConfig := &workspaceConfig{"0x3000001", "mytt-org", "mytt-project"}
+
+	serializedConfig, _ := json.MarshalIndent(mockedWorkspaceConfig, "", "    ")
+	fmt.Printf(string(serializedConfig))
 }
