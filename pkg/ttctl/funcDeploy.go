@@ -6,20 +6,20 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type funcCreateCommandeer struct {
+type funcDeployCommandeer struct {
 	cmd            *cobra.Command
 	funcCommandeer *funcCommandeer
 }
 
-func newFuncCreateCommandeer(funcCommandeer *funcCommandeer) *funcCreateCommandeer {
-	commandeer := &funcCreateCommandeer{
+func newFuncDeployCommandeer(funcCommandeer *funcCommandeer) *funcDeployCommandeer {
+	commandeer := &funcDeployCommandeer{
 		funcCommandeer: funcCommandeer,
 	}
 
 	cmd := &cobra.Command{
 		Use:     "func",
 		Aliases: []string{"function"},
-		Short:   "Operations for Tt Function.",
+		Short:   "Deploy a Function ",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("Client version")
 			return nil
