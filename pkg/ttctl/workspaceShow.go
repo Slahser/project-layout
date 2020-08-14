@@ -1,9 +1,11 @@
 package ttctl
 
 import (
-	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
 
+	homedir "github.com/mitchellh/go-homedir"
 	cobra "github.com/spf13/cobra"
 )
 
@@ -18,9 +20,8 @@ func newWorkspaceShowCommandeer(workspaceCommandeer *workspaceCommandeer) *works
 	}
 
 	cmd := &cobra.Command{
-		Use:     "workspace",
-		Aliases: []string{"ws"},
-		Short:   "Switch to specific workspace.",
+		Use:   "show",
+		Short: "Show current workspace.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			show()
 			return nil
@@ -33,8 +34,21 @@ func newWorkspaceShowCommandeer(workspaceCommandeer *workspaceCommandeer) *works
 }
 
 func show() {
-	mockedWorkspaceConfig := &workspaceConfig{"0x3000001", "mytt-org", "mytt-project"}
 
-	serializedConfig, _ := json.MarshalIndent(mockedWorkspaceConfig, "", "    ")
+	basicPath, _ := homedir.Dir()
+	inputFile, inputError := os.Open(basicPath + "/.ttctl/workspace.json")
+	if inputError != nil {
+		fmt.Printf("An error occurred on opening the inputfile")
+		return
+	}
+	defer inputFile.Close()
+
+	inputBytes, _ := ioutil.ReadAll(inputFile)
+
+	var wsConfig workspaceConfig
+
+	_ = json.Unmarshal(inputBytes, &wsConfig)
+
+	serializedConfig, _ := json.MarshalIndent(wsConfig, "", "    ")
 	fmt.Printf(string(serializedConfig))
 }

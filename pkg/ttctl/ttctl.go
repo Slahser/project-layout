@@ -1,9 +1,14 @@
 package ttctl
 
 import (
+	jsoniter "github.com/json-iterator/go"
 	cobra "github.com/spf13/cobra"
 	doc "github.com/spf13/cobra/doc"
 	zap "go.uber.org/zap"
+)
+
+var (
+	json = jsoniter.ConfigCompatibleWithStandardLibrary
 )
 
 type RootCommandeer struct {

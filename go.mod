@@ -13,10 +13,13 @@ require (
 	github.com/guptarohit/asciigraph v0.5.0
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/jpillora/opts v1.2.0
+	github.com/json-iterator/go v1.1.10
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
+	github.com/nuclio/errors v0.0.3
+	github.com/nuclio/nuclio-sdk-go v0.2.0
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0

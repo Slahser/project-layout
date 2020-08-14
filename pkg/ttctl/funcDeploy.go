@@ -17,8 +17,8 @@ func newFuncDeployCommandeer(funcCommandeer *funcCommandeer) *funcDeployCommande
 	}
 
 	cmd := &cobra.Command{
-		Use:     "func",
-		Aliases: []string{"function"},
+		Use:     "deploy [-flag]",
+		Aliases: []string{"add", "install", "upload"},
 		Short:   "Deploy a Function ",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("Client version")

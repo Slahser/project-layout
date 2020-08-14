@@ -23,7 +23,7 @@ func newFuncCommandeer(rootCommandeer *RootCommandeer) *funcCommandeer {
 	}
 
 	cmd.AddCommand(
-		newFuncCreateCommandeer(commandeer).cmd,
+		newFuncDeployCommandeer(commandeer).cmd,
 		newFuncBuildImageCommandeer(commandeer).cmd,
 		newFuncDescribeCommandeer(commandeer).cmd,
 		newFuncDeleteCommandeer(commandeer).cmd,

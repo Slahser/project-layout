@@ -17,9 +17,9 @@ func newFuncBuildImageCommandeer(funcCommandeer *funcCommandeer) *funcBuildImage
 	}
 
 	cmd := &cobra.Command{
-		Use:     "func",
-		Aliases: []string{"function"},
-		Short:   "Operations for Tt Function.",
+		Use:     "build-image [-flag]",
+		Aliases: []string{"build"},
+		Short:   "Build a function image.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("Client version")
 			return nil

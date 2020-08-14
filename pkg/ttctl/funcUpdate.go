@@ -19,7 +19,7 @@ func newFuncUpdateCommandeer(funcCommandeer *funcCommandeer) *funcUpdateCommande
 	cmd := &cobra.Command{
 		Use:     "func",
 		Aliases: []string{"function"},
-		Short:   "Operations for Tt Function.",
+		Short:   "Update a Function.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("Client version")
 			return nil

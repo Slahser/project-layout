@@ -17,9 +17,9 @@ func newFuncDescribeCommandeer(funcCommandeer *funcCommandeer) *funcDescribeComm
 	}
 
 	cmd := &cobra.Command{
-		Use:     "func",
-		Aliases: []string{"function"},
-		Short:   "Operations for Tt Function.",
+		Use:     "desc [-flag]",
+		Aliases: []string{"describe"},
+		Short:   "Describe specific Function.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("Client version")
 			return nil

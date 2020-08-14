@@ -15,8 +15,8 @@ func newWorkspaceCommandeer(rootCommandeer *RootCommandeer) *workspaceCommandeer
 	}
 
 	cmd := &cobra.Command{
-		Use:           "workspace [command]",
-		Aliases:       []string{"ws"},
+		Use:           "ws [command]",
+		Aliases:       []string{"workspace"},
 		Short:         "Config/Switch/Show local workspace",
 		SilenceUsage:  true,
 		SilenceErrors: true,

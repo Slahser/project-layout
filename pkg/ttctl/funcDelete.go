@@ -17,9 +17,9 @@ func newFuncDeleteCommandeer(funcCommandeer *funcCommandeer) *funcDeleteCommande
 	}
 
 	cmd := &cobra.Command{
-		Use:     "func",
-		Aliases: []string{"function"},
-		Short:   "Operations for Tt Function.",
+		Use:     "delete [-flag]",
+		Aliases: []string{"remove", "uninstall"},
+		Short:   "Delete a Function.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("Client version")
 			return nil
