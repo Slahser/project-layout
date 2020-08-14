@@ -20,7 +20,7 @@ func newVersionCommandeer(rootCommandeer *RootCommandeer) *versionCommandeer {
 	cmd := &cobra.Command{
 		Use:     "version",
 		Aliases: []string{"ver"},
-		Short:   "Display the version number of the ttctl CLI",
+		Short:   "Display the version of the ttctl CLI",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("Client version:\n%#v", version.Get().String())
 			return nil

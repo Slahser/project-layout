@@ -1,8 +1,6 @@
 package ttctl
 
 import (
-	"fmt"
-
 	cobra "github.com/spf13/cobra"
 )
 
@@ -17,14 +15,20 @@ func newFuncCommandeer(rootCommandeer *RootCommandeer) *funcCommandeer {
 	}
 
 	cmd := &cobra.Command{
-		Use:     "func",
-		Aliases: []string{"function"},
-		Short:   "Operations for Tt Function.",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Printf("Client version")
-			return nil
-		},
+		Use:           "func [command]",
+		Aliases:       []string{"function"},
+		Short:         "Operations for Tt Function.",
+		SilenceUsage:  true,
+		SilenceErrors: true,
 	}
+
+	cmd.AddCommand(
+		newFuncCreateCommandeer(commandeer).cmd,
+		newFuncBuildImageCommandeer(commandeer).cmd,
+		newFuncDescribeCommandeer(commandeer).cmd,
+		newFuncDeleteCommandeer(commandeer).cmd,
+		newFuncUpdateCommandeer(commandeer).cmd,
+	)
 
 	commandeer.cmd = cmd
 

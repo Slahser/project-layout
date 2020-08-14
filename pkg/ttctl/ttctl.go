@@ -25,14 +25,6 @@ func NewRootCommandeer() *RootCommandeer {
 	cmd.PersistentFlags().BoolVarP(&commandeer.verbose, "verbose", "v", false, "Verbose mode, show more details")
 
 	cmd.AddCommand(
-		//newBuildCommandeer(commandeer).cmd,
-		//newDeployCommandeer(commandeer).cmd,
-		//newInvokeCommandeer(commandeer).cmd,
-		//newGetCommandeer(commandeer).cmd,
-		//newDeleteCommandeer(commandeer).cmd,
-		//newUpdateCommandeer(commandeer).cmd,
-		//newCreateCommandeer(commandeer).cmd,
-		//newExportCommandeer(commandeer).cmd,
 		newVersionCommandeer(commandeer).cmd,
 		newWorkspaceCommandeer(commandeer).cmd,
 		newFuncCommandeer(commandeer).cmd,

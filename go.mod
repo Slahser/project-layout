@@ -16,9 +16,13 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/mattn/go-tty v0.0.3 // indirect
+	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0
+	github.com/spf13/pflag v1.0.3
+	github.com/spf13/viper v1.4.0
+	github.com/stromland/cobra-prompt v0.0.0-20181123224253-940a0a2bd0d3
 	github.com/urfave/cli/v2 v2.2.0
 	github.com/v3io/version-go v0.0.2
 	go.uber.org/zap v1.10.0

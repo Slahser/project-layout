@@ -1,8 +1,6 @@
 package ttctl
 
 import (
-	"fmt"
-
 	cobra "github.com/spf13/cobra"
 )
 
@@ -17,16 +15,26 @@ func newWorkspaceCommandeer(rootCommandeer *RootCommandeer) *workspaceCommandeer
 	}
 
 	cmd := &cobra.Command{
-		Use:     "workspace",
-		Aliases: []string{"ws"},
-		Short:   "Switch to specific workspace.",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Printf("Client version")
-			return nil
-		},
+		Use:           "workspace [command]",
+		Aliases:       []string{"ws"},
+		Short:         "Config/Switch/Show local workspace",
+		SilenceUsage:  true,
+		SilenceErrors: true,
 	}
+
+	cmd.AddCommand(
+		newWorkspaceInitCommandeer(commandeer).cmd,
+		newWorkspaceShowCommandeer(commandeer).cmd,
+		newWorkspaceSwitchCommandeer(commandeer).cmd,
+	)
 
 	commandeer.cmd = cmd
 
 	return commandeer
+}
+
+type workspaceConfig struct {
+	UserId       string `json:"user_id"`
+	Organization string `json:"organization"`
+	Project      string `json:"project"`
 }
