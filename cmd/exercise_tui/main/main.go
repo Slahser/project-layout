@@ -127,7 +127,8 @@ func main() {
 
 	//progressbar start
 	//https://github.com/cheggaaa/pb
-
+	//https://github.com/vbauerster/mpb
+	//https://github.com/Gosuri/uilive
 	//progressbar stop
 
 	//asciigraph start
@@ -136,6 +137,27 @@ func main() {
 
 	fmt.Println(graph)
 	//asciigraph stop
+
+	//color start
+	//https://github.com/fatih/color
+	//color stop
+
+	//web start
+	//https://github.com/gin-Gonic/gin
+	//https://github.com/codemodus/parth
+	//validate
+	//https://github.com/Go-playground/validator
+	//web stop
+
+	//tool
+	//https://github.com/thoas/Go-funk
+
+	//rest client
+	//https://github.com/h2non/gentleman
+	//https://github.com/Go-resty/resty
+	//deepcopy
+	//https://github.com/ulule/deepcopier
+	//deepcopy
 }
 
 /**

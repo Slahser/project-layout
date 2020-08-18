@@ -50,5 +50,5 @@ func show() {
 	_ = json.Unmarshal(inputBytes, &wsConfig)
 
 	serializedConfig, _ := json.MarshalIndent(wsConfig, "", "    ")
-	fmt.Printf(string(serializedConfig))
+	fmt.Print(string(serializedConfig))
 }
