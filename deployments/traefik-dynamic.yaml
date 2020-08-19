@@ -21,10 +21,10 @@ http:
     my-service-with-weight-facade:
       weighted:
         services:
-        - name: tt-service-backend-kubeless
-          weight: 3
-        - name: tt-service-backend-nuclio
-          weight: 1
+          - name: tt-service-backend-kubeless
+            weight: 3
+          - name: tt-service-backend-nuclio
+            weight: 1
     tt-service-backend-kubeless:
       loadBalancer:
         healthCheck:

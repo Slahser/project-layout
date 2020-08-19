@@ -8,7 +8,10 @@ require (
 	github.com/deckarep/gosx-notifier v0.0.0-20180201035817-e127226297fb
 	github.com/dimiro1/banner v1.0.0
 	github.com/felixge/fgprof v0.9.0
+	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
+	github.com/gin-gonic/gin v1.6.3
 	github.com/go-openapi/strfmt v0.19.5 // indirect
+	github.com/go-playground/validator/v10 v10.3.0
 	github.com/goproxy/goproxy v0.1.5
 	github.com/guptarohit/asciigraph v0.5.0
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
@@ -18,6 +21,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
+	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/nuclio/errors v0.0.3
 	github.com/nuclio/nuclio-sdk-go v0.2.0
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect

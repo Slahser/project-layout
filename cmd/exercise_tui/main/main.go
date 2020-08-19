@@ -144,7 +144,6 @@ func main() {
 
 	//web start
 	//https://github.com/gin-Gonic/gin
-	//https://github.com/codemodus/parth
 	//validate
 	//https://github.com/Go-playground/validator
 	//web stop
