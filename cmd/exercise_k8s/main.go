@@ -17,5 +17,6 @@ func main() {
 
 	//tt_client_go.Tcg1()
 
-	print(etcd_wrapper.GetEtcdKv().Get(context.TODO(), "/tt"))
+	print(etcd_wrapper.EtcdKV.Get(context.TODO(), "/tt"))
+
 }

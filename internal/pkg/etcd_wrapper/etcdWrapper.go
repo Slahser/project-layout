@@ -4,13 +4,14 @@ import (
 	"sync"
 	"time"
 
-	etcd "go.etcd.io/etcd/clientv3"
+	etcd "github.com/coreos/etcd/clientv3"
 	"go.uber.org/zap"
 )
 
 var (
 	once       sync.Once
-	etcdClient *etcd.Client
+	EtcdClient *etcd.Client
+	EtcdKV     etcd.KV
 
 	etcdEndpoints = []string{"http://8.210.134.212:2379"}
 	//etcdUsername    = "tt"
@@ -24,20 +25,9 @@ func init() {
 	InitEtcdClient()
 }
 
-func GetEtcdKv() etcd.KV {
-	return etcd.NewKV(GetEtcdClient())
-}
-
-func GetEtcdClient() *etcd.Client {
-	once.Do(func() {
-		etcdClient = InitEtcdClient()
-	})
-	return etcdClient
-}
-
 func InitEtcdClient() *etcd.Client {
 
-	cli, err := etcd.New(etcd.Config{
+	EtcdClient, err := etcd.New(etcd.Config{
 		Endpoints:   etcdEndpoints,
 		DialTimeout: etcdDialTimeout,
 		//Username:    etcdUsername,
@@ -49,8 +39,18 @@ func InitEtcdClient() *etcd.Client {
 		zap.S().Errorw("etcd init error")
 	}
 
-	defer cli.Close()
-
+	EtcdKV = etcd.NewKV(EtcdClient)
 	zap.S().Info("etcd init succeed")
-	return cli
+	return EtcdClient
+}
+
+func GetEtcdKv() etcd.KV {
+	return etcd.NewKV(GetEtcdClient())
+}
+
+func GetEtcdClient() *etcd.Client {
+	once.Do(func() {
+		EtcdClient = InitEtcdClient()
+	})
+	return EtcdClient
 }
