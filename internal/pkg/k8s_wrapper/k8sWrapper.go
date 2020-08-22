@@ -20,8 +20,8 @@ func init(){
 }
 
 func InitK8sClient() *kubernetes.Clientset {
-
-	K8sClient, err := kubernetes.NewForConfig(GetK8sConfig())
+	K8sConfig = GetK8sConfig()
+	K8sClient, err := kubernetes.NewForConfig(K8sConfig)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -40,9 +40,10 @@ func GetK8sConfig() *rest.Config {
 
 	flag.Parse()
 
-	K8sConfig, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
+	k8sConfig, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
 	if err != nil {
+		print("k8s client init error")
 		panic(err.Error())
 	}
-	return K8sConfig
+	return k8sConfig
 }

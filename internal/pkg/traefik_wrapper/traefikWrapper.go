@@ -15,7 +15,7 @@ var (
 	once          sync.Once
 	TraefikClient *traefikv1alpha1.TraefikV1alpha1Client
 
-	traefikPlayground = "traefikv1alpha1-playground"
+	traefikPlayground = "traefik-playground"
 )
 
 func init() {
@@ -24,7 +24,7 @@ func init() {
 
 func InitTraefikClient() *traefikv1alpha1.TraefikV1alpha1Client {
 
-	TraefikClient := traefikv1alpha1.NewForConfigOrDie(k8swrapper.K8sConfig)
+	TraefikClient = traefikv1alpha1.NewForConfigOrDie(k8swrapper.K8sConfig)
 
 	zap.S().Info("traefikv1alpha1 client init error")
 
