@@ -15,7 +15,7 @@ var (
 	once          sync.Once
 	TraefikClient *traefikv1alpha1.TraefikV1alpha1Client
 
-	traefikPlayground = "traefik-playground"
+	TraefikPlayground = "traefik-playground"
 )
 
 func init() {
@@ -33,15 +33,15 @@ func InitTraefikClient() *traefikv1alpha1.TraefikV1alpha1Client {
 }
 
 func Middlewares() traefikv1alpha1.MiddlewareInterface {
-	return TraefikClient.Middlewares(traefikPlayground)
+	return TraefikClient.Middlewares(TraefikPlayground)
 }
 
 func IngressRoutes() traefikv1alpha1.IngressRouteInterface {
-	return TraefikClient.IngressRoutes(traefikPlayground)
+	return TraefikClient.IngressRoutes(TraefikPlayground)
 }
 
 func TraefikServices() traefikv1alpha1.TraefikServiceInterface {
-	return TraefikClient.TraefikServices(traefikPlayground)
+	return TraefikClient.TraefikServices(TraefikPlayground)
 }
 
 func GetTraefikClient() *traefikv1alpha1.TraefikV1alpha1Client {
