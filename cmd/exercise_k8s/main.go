@@ -1,11 +1,10 @@
 package main
 
 import (
-	"context"
-
 	"github.com/Slahser/coup-de-grace/internal/app/helper"
-	"github.com/Slahser/coup-de-grace/internal/pkg/etcd_wrapper"
+	traefikwrapper "github.com/Slahser/coup-de-grace/internal/pkg/traefik_wrapper"
 	"go.uber.org/zap"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func main() {
@@ -15,8 +14,7 @@ func main() {
 	undo := zap.ReplaceGlobals(logger)
 	defer undo()
 
-	//tt_client_go.Tcg1()
+	middlewareList, _ := traefikwrapper.Middlewares().List(metav1.ListOptions{})
 
-	print(etcd_wrapper.EtcdKV.Get(context.TODO(), "/tt"))
-
+	print(middlewareList)
 }

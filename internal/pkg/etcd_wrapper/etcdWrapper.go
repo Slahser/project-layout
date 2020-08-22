@@ -1,4 +1,4 @@
-package etcd_wrapper
+package etcdwrapper
 
 import (
 	"sync"
@@ -13,7 +13,7 @@ var (
 	EtcdClient *etcd.Client
 	EtcdKV     etcd.KV
 
-	etcdEndpoints = []string{"http://8.210.134.212:2379"}
+	etcdEndpoints = []string{"8.210.134.212:2379"}
 	//etcdUsername    = "tt"
 	//etcdPassword    = "tt"
 	etcdDialTimeout = 5 * time.Second

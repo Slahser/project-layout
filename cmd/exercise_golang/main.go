@@ -44,6 +44,9 @@ func main() {
 	tt_practice.Tt4()
 	tt_practice.Tt5()
 	tt_practice.Tt6()
+
+	print(tt_practice.TtErrorHandle())
+
 	//=====
 	end := time.Now()
 	cost := end.Sub(start)
