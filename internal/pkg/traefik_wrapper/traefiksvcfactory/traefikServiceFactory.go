@@ -6,6 +6,12 @@ import (
 	"github.com/go-errors/errors"
 )
 
+const (
+	SELF_HOSTED  = "selfhosted"
+	CLOUD_HOSTED = "cloudhosted"
+	AGGR         = "aggr"
+)
+
 var svcFactories = make(map[string]TraefikServiceFactory)
 
 /**

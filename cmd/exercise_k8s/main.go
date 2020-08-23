@@ -37,13 +37,13 @@ func main() {
 	}
 
 	//gen svc self hosted
-	selfHostedSvc, _ := traefiksvcfactory.Create("selfhosted", make(map[string]interface{}))
+	selfHostedSvc, _ := traefiksvcfactory.Create(traefiksvcfactory.SELF_HOSTED, make(map[string]interface{}))
 
 	//gen svc cloud hosted
-	cloudHostedSvc, _ := traefiksvcfactory.Create("cloudhosted", make(map[string]interface{}))
+	cloudHostedSvc, _ := traefiksvcfactory.Create(traefiksvcfactory.CLOUD_HOSTED, make(map[string]interface{}))
 
 	//gen svc aggr
-	aggrSvc, _ := traefiksvcfactory.Create("aggr", make(map[string]interface{}))
+	aggrSvc, _ := traefiksvcfactory.Create(traefiksvcfactory.AGGR, make(map[string]interface{}))
 
 	print(selfHostedSvc)
 	print(cloudHostedSvc)
