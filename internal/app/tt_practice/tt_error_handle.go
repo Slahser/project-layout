@@ -19,15 +19,13 @@ func TtErrorHandle() error {
 	return result
 }
 
-
-
-func step1() error{
+func step1() error {
 	var Crashed = errors.Errorf("step1")
 	return errors.New(Crashed)
 
 }
 
-func step2() error{
+func step2() error {
 	var Crashed = errors.Errorf("step2")
 	return errors.New(Crashed)
 

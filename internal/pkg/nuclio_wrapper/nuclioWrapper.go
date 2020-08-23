@@ -4,15 +4,10 @@ var (
 	NuclioPlayground = "nuclio-playground"
 )
 
-func init(){
+func init() {
 	InitNuclioClient()
 }
 
-func InitNuclioClient(){
+func InitNuclioClient() {
 
 }
-
-
-
-
-

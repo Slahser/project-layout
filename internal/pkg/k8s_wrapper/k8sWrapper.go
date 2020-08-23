@@ -15,7 +15,7 @@ var (
 	K8sConfig *rest.Config
 )
 
-func init(){
+func init() {
 	InitK8sClient()
 }
 
