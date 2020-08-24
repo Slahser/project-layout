@@ -25,7 +25,7 @@ require (
 	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/natefinch/lumberjack v2.0.0+incompatible
-	github.com/nuclio/nuclio v0.0.0-20200824084355-b57886cf0a7a
+	//github.com/nuclio/nuclio v0.0.0-20200824084355-b57886cf0a7a
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0
