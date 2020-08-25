@@ -21,8 +21,6 @@ require (
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/jpillora/opts v1.2.0
 	github.com/json-iterator/go v1.1.10
-	github.com/kisielk/errcheck v1.4.0 // indirect
-	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/natefinch/lumberjack v2.0.0+incompatible
@@ -33,7 +31,6 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/v3io/version-go v0.0.2
 	go.uber.org/zap v1.10.0
-	golang.org/x/tools v0.0.0-20200821200730-1e23e48ab93b // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
@@ -45,6 +42,8 @@ require (
 replace github.com/docker/docker => github.com/docker/engine v1.4.2-0.20200204220554-5f6d6f3f2203
 
 replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0
+
+replace github.com/nuclio/nuclio => ./third_party/nuclio
 
 replace (
 	github.com/coreos/etcd => github.com/ozonru/etcd v3.3.20-grpc1.27-origmodule+incompatible

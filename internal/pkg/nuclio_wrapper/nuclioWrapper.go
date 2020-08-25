@@ -4,7 +4,7 @@ import (
 	"sync"
 
 	k8swrapper "github.com/Slahser/coup-de-grace/internal/pkg/k8s_wrapper"
-	nucliov1beta1 "github.com/Slahser/coup-de-grace/third_party/nuclio/pkg/platform/kube/client/clientset/versioned/typed/nuclio.io/v1beta1"
+	nucliov1beta1 "github.com/nuclio/nuclio/pkg/platform/kube/client/clientset/versioned/typed/nuclio.io/v1beta1"
 
 	//nucliov1beta1 "github.com/nuclio/nuclio/pkg/platform/kube/client/clientset/versioned/typed/nuclio.io/v1beta1"
 	"go.uber.org/zap"

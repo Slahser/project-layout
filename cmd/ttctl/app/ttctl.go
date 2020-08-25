@@ -16,8 +16,8 @@ func doUpdate(url string) error {
 		return err
 	}
 	defer resp.Body.Close()
-	err := update.Apply(resp.Body, update.Options{})
-	if err != nil {
+
+	if err := update.Apply(resp.Body, update.Options{}); err != nil {
 		// error handling
 	}
 	return err
