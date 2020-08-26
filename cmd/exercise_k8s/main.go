@@ -2,14 +2,17 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"time"
+
+	nucliowrapper "github.com/Slahser/coup-de-grace/internal/pkg/nuclio_wrapper"
+
 	"github.com/Slahser/coup-de-grace/internal/app/helper"
 	traefikwrapper "github.com/Slahser/coup-de-grace/internal/pkg/traefik_wrapper"
 	"github.com/Slahser/coup-de-grace/internal/pkg/traefik_wrapper/traefiksvcfactory"
-	"github.com/go-errors/errors"
-	"go.uber.org/zap"
+	errors "github.com/go-errors/errors"
+	zap "go.uber.org/zap"
 	k8smetav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"strconv"
-	"time"
 )
 
 var ()
@@ -20,6 +23,32 @@ func main() {
 	logger := helper.InitLogger()
 	undo := zap.ReplaceGlobals(logger)
 	defer undo()
+
+	//ttTraefik()
+	ttNuclio()
+
+}
+
+func ttNuclio() {
+
+	funcList, _ := nucliowrapper.Functions().List(k8smetav1.ListOptions{})
+	for i, mw := range funcList.Items {
+		fmt.Println("func" + strconv.Itoa(i) + "=>" + mw.Name)
+	}
+
+	funcEventsList, _ := nucliowrapper.FunctionEvents().List(k8smetav1.ListOptions{})
+	for i, mw := range funcEventsList.Items {
+		fmt.Println("funcEvent" + strconv.Itoa(i) + "=>" + mw.Name)
+	}
+
+	projectsList, _ := nucliowrapper.Projects().List(k8smetav1.ListOptions{})
+	for i, mw := range projectsList.Items {
+		fmt.Println("project" + strconv.Itoa(i) + "=>" + mw.Name)
+	}
+
+}
+
+func ttTraefik() {
 
 	middlewareList, _ := traefikwrapper.Middlewares().List(k8smetav1.ListOptions{})
 	for i, mw := range middlewareList.Items {
@@ -68,5 +97,4 @@ func main() {
 			zap.S().Info("deleted svc " + execedSvc.Name)
 		}
 	}
-
 }
