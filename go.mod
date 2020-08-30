@@ -38,8 +38,6 @@ require (
 	k8s.io/client-go v0.18.8
 )
 
-replace github.com/nuclio/nuclio => ./third_party/nuclio
-
 // Docker v19.03.6
 replace github.com/docker/docker => github.com/docker/engine v1.4.2-0.20200204220554-5f6d6f3f2203
 
