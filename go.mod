@@ -1,6 +1,6 @@
 module github.com/Slahser/coup-de-grace
 
-go 1.14
+go 1.13
 
 require (
 	github.com/c-bata/go-prompt v0.2.3
@@ -23,9 +23,12 @@ require (
 	github.com/json-iterator/go v1.1.10
 	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
+	github.com/moby/buildkit v0.7.2
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/nuclio/nuclio v0.0.0-20200824084355-b57886cf0a7a
+	github.com/pkg/errors v0.9.1
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
+	github.com/serialx/hashring v0.0.0-20190422032157-8b2912629002
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/pflag v1.0.5
@@ -41,7 +44,14 @@ require (
 // Docker v19.03.6
 replace github.com/docker/docker => github.com/docker/engine v1.4.2-0.20200204220554-5f6d6f3f2203
 
-replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0
+replace (
+	github.com/containerd/containerd => github.com/containerd/containerd v1.4.0
+	github.com/golang/protobuf => github.com/golang/protobuf v1.3.5
+	github.com/hashicorp/go-immutable-radix => github.com/tonistiigi/go-immutable-radix v0.0.0-20170803185627-826af9ccf0fe
+	github.com/jaguilar/vt100 => github.com/tonistiigi/vt100 v0.0.0-20190402012908-ad4c4a574305
+)
+
+//replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0
 
 replace github.com/nuclio/nuclio => ./third_party/nuclio
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"os"
 
@@ -25,7 +24,7 @@ func main() {
 	bk := buildkit(opt)
 	out := bk.Run(llb.Shlex("ls -l /bin")) // debug output
 
-	dt, err := out.Marshal(context.TODO(), llb.LinuxAmd64)
+	dt, err := out.Marshal(llb.LinuxAmd64)
 	if err != nil {
 		panic(err)
 	}

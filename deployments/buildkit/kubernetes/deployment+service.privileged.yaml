@@ -5,7 +5,7 @@ metadata:
     app: buildkitd
   name: buildkitd
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: buildkitd
@@ -22,12 +22,7 @@ spec:
         - unix:///run/buildkit/buildkitd.sock
         - --addr
         - tcp://0.0.0.0:1234
-        - --tlscacert
-        - /certs/ca.pem
-        - --tlscert
-        - /certs/cert.pem
-        - --tlskey
-        - /certs/key.pem
+
 # the probe below will only work after Release v0.6.3
         readinessProbe:
           exec:
@@ -50,15 +45,7 @@ spec:
           privileged: true
         ports:
         - containerPort: 1234
-        volumeMounts:
-        - name: certs
-          readOnly: true
-          mountPath: /certs
-      volumes:
-# buildkit-daemon-certs must contain ca.pem, cert.pem, and key.pem
-      - name: certs
-        secret:
-          secretName: buildkit-daemon-certs
+
 ---
 apiVersion: v1
 kind: Service
@@ -68,7 +55,7 @@ metadata:
   name: buildkitd
 spec:
   ports:
-  - port: 1234
+  - port: 80
     protocol: TCP
   selector:
     app: buildkitd

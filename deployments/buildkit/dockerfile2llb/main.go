@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"io/ioutil"
 	"log"
@@ -42,7 +41,7 @@ func main() {
 
 	_ = img
 
-	dt, err := state.Marshal(context.TODO())
+	dt, err := state.Marshal(llb.LinuxAmd64)
 	if err != nil {
 		panic(err)
 	}

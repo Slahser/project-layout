@@ -1,5 +1,8 @@
 # BuildKit Examples
 
+https://stackoverflow.com/questions/58508711/using-docker-buildkits-go-client-how-do-i-add-an-entrypoint
+https://github.com/moby/moby/blob/master/image/spec/v1.2.md
+
 ## Kubernetes manifests
 - [`./kubernetes`](./kubernetes): Kubernetes manifests (`Pod`, `Deployment`, `StatefulSet`, `Job`)
 
