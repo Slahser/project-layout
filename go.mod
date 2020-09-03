@@ -1,6 +1,6 @@
 module github.com/Slahser/coup-de-grace
 
-go 1.13
+go 1.14
 
 require (
 	github.com/c-bata/go-prompt v0.2.3
@@ -26,9 +26,10 @@ require (
 	github.com/moby/buildkit v0.7.2
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/nuclio/nuclio v0.0.0-20200824084355-b57886cf0a7a
+	github.com/nuclio/zap v0.0.3
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
-	github.com/serialx/hashring v0.0.0-20190422032157-8b2912629002
+	github.com/serialx/hashring v0.0.0-20200727003509-22c0c7ab6b1b
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/pflag v1.0.5
