@@ -1,0 +1,2 @@
+./path_unix.go
+./seccomp_noseccomp.go

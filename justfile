@@ -8,7 +8,6 @@ tardir  := "awesomesauce-" + version
 alias alias_t := recipe-name
 
 # just会在运行真正命令之前，将每个命令打印到标准错误(stderr)，这就是为什么echo 'This is a recipe!'会被打印。
-
 # just version=1 recipe-name
 recipe-name:
     echo 'This is a recipe! with var {{tardir}}'
@@ -61,12 +60,32 @@ for:
         echo $file
     done
 
-_silent-script:
-    echo "silent one"
+# 隐藏与脚本
+polyglot: _python _js _perl _sh _ruby
+# (recipes that start with `_` are hidden from --list)
+
+_python:
+	#!/usr/bin/env python3
+	print('Hello from python!')
+
+_js:
+	#!/usr/bin/env node
+	console.log('Greetings from JavaScript!')
+
+_perl:
+	#!/usr/bin/env perl
+	print "Larry Wall says Hi!\n";
+
+_sh:
+	#!/usr/bin/env sh
+	hello='Yo'
+	echo "$hello from a shell script!"
+
+_ruby:
+	#!/usr/bin/env ruby
+	puts "Hello from ruby!"
 
 # ==================complex one======================
-
-
 
 
 

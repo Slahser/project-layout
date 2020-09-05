@@ -1,0 +1,6 @@
+./bsoncore.go
+./document.go
+./document_sequence.go
+./element.go
+./tables.go
+./value.go

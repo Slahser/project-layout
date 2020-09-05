@@ -1,0 +1,8 @@
+./arrays.go
+./converter.go
+./error.go
+./numerics.go
+./patterns.go
+./types.go
+./utils.go
+./validator.go

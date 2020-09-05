@@ -1,0 +1,7 @@
+./bflag.go
+./commands.go
+./commands_nosecrets.go
+./commands_nossh.go
+./errors_unix.go
+./parse.go
+./support.go

@@ -1,0 +1,10 @@
+./aws.go
+./config.go
+./consts.go
+./helper.go
+./k8s.go
+./map.go
+./tempfile.go
+./url.go
+./version.go
+./zip.go

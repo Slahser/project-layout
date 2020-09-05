@@ -1,0 +1,12 @@
+./func.go
+./funcBuildImage.go
+./funcDelete.go
+./funcDeploy.go
+./funcDescribe.go
+./funcUpdate.go
+./ttctl.go
+./version.go
+./workspace.go
+./workspaceInit.go
+./workspaceShow.go
+./workspaceSwitch.go

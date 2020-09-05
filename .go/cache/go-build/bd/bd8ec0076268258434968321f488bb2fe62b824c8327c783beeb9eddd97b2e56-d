@@ -1,0 +1,7 @@
+./doc.go
+./generated_expansion.go
+./nuclio.io_client.go
+./nuclioapigateway.go
+./nucliofunction.go
+./nucliofunctionevent.go
+./nuclioproject.go

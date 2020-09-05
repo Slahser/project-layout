@@ -1,0 +1,8 @@
+./definition.go
+./exec.go
+./fileop.go
+./marshal.go
+./meta.go
+./resolver.go
+./source.go
+./state.go

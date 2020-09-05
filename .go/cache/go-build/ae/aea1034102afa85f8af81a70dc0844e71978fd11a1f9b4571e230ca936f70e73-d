@@ -1,0 +1,10 @@
+./doc.go
+./generated_expansion.go
+./ingressroute.go
+./ingressroutetcp.go
+./ingressrouteudp.go
+./middleware.go
+./tlsoption.go
+./tlsstore.go
+./traefik_client.go
+./traefikservice.go

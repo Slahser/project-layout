@@ -1,0 +1,4 @@
+./containerimagebuilder.go
+./docker.go
+./kaniko.go
+./types.go
