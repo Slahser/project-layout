@@ -80,7 +80,7 @@ func ttTraefik() {
 
 	execedSvc, createErr := traefikwrapper.TraefikServices().Create(cloudHostedSvc)
 	if createErr != nil {
-		zap.S().Error(errors.Errorf("create err", createErr))
+		zap.S().Error(errors.Errorf("create err %w", createErr))
 	} else {
 		zap.S().Info("created svc " + execedSvc.Name)
 
@@ -92,7 +92,7 @@ func ttTraefik() {
 				APIVersion: "traefik.containo.us/v1alpha1",
 			},
 		}); deletedErr != nil {
-			zap.S().Error(errors.Errorf("delete err", deletedErr))
+			zap.S().Error(errors.Errorf("delete err %w", deletedErr))
 		} else {
 			zap.S().Info("deleted svc " + execedSvc.Name)
 		}

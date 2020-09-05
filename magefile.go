@@ -1,20 +1,23 @@
 // +build mage
-
+//https://magefile.org/
+//https://github.com/magefile/awesome-mage
 package main
 
 import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/magefile/mage/mg"
-	"github.com/magefile/mage/sh"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"regexp"
 	"runtime"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/magefile/mage/mg"
+	"github.com/magefile/mage/sh"
 )
 
 // allow user to override go executable by running as GOEXE=xxx make ... on unix-like systems
@@ -24,8 +27,8 @@ var docker = sh.RunCmd("docker")
 var (
 	packageName  = "github.com/Slahser/coup-de-grace"
 	pkgPrefixLen = len("github.com/Slahser/coup-de-grace")
-	noGitLdflags = "-X $PACKAGE/common/hugo.buildDate=$BUILD_DATE"
-	ldflags = "-X $PACKAGE/common/hugo.commitHash=$COMMIT_HASH -X $PACKAGE/common/hugo.buildDate=$BUILD_DATE"
+	noGitLdflags = "-X $PACKAGE/common/slahser.buildDate=$BUILD_DATE"
+	ldflags      = "-X $PACKAGE/common/slahser.commitHash=$COMMIT_HASH "+ noGitLdflags
 	pkgs         []string
 	pkgsInit     sync.Once
 )
@@ -37,7 +40,7 @@ func init() {
 
 	// We want to use Go 1.11 modules even if the source lives inside GOPATH.
 	// The default is "auto".
-	os.Setenv("GO111MODULE", "on")
+	_ = os.Setenv("GO111MODULE", "on")
 }
 
 // Install binary
@@ -182,10 +185,29 @@ func Vet() error {
 	return nil
 }
 
-
+// Generates a new release.  Expects the TAG environment variable to be set,
+// which will create a new tag with that name.
 func Release() (err error) {
-//https://goreleaser.com/intro/
-	return nil
+	releaseTag := regexp.MustCompile(`^v1\.[0-9]+\.[0-9]+$`)
+	//https://goreleaser.com/intro/
+	tag := os.Getenv("TAG")
+	if !releaseTag.MatchString(tag) {
+		return errors.New("TAG environment variable must be in semver v1.x.x format, but was " + tag)
+	}
+
+	if err := sh.RunV("git", "tag", "-a", tag, "-m", tag); err != nil {
+		return err
+	}
+	if err := sh.RunV("git", "push", "origin", tag); err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			sh.RunV("git", "tag", "--delete", "$TAG")
+			sh.RunV("git", "push", "--delete", "origin", "$TAG")
+		}
+	}()
+	return sh.RunV("goreleaser")
 }
 
 // Generate test coverage report
@@ -229,8 +251,6 @@ func TestCoverHTML() error {
 	return sh.Run(goexe, "tool", "cover", "-html="+coverAll)
 }
 
-
-
 func flagEnv() map[string]string {
 	hash, _ := sh.Output("git", "rev-parse", "--short", "HEAD")
 	return map[string]string{
@@ -239,7 +259,6 @@ func flagEnv() map[string]string {
 		"BUILD_DATE":  time.Now().Format("2006-01-02T15:04:05Z0700"),
 	}
 }
-
 
 func argsToStrings(v ...interface{}) []string {
 	var args []string
@@ -264,7 +283,6 @@ func argsToStrings(v ...interface{}) []string {
 func isGoLatest() bool {
 	return strings.Contains(runtime.Version(), "1.14")
 }
-
 
 func runCmd(env map[string]string, cmd string, args ...interface{}) error {
 	if mg.Verbose() {
@@ -321,10 +339,25 @@ func buildFlags() []string {
 
 func buildTags() string {
 	// To build the extended Hugo SCSS/SASS enabled version, build with
-	// HUGO_BUILD_TAGS=extended mage install etc.
-	if envtags := os.Getenv("TT_BUILD_TAGS"); envtags != "" {
+	// SLAHSER_BUILD_TAGS=extended mage install etc.
+	if envtags := os.Getenv("SLAHSER_BUILD_TAGS"); envtags != "" {
 		return envtags
 	}
 	return "none"
 }
 
+func xplatPath(pathParts ...string) string {
+	return filepath.Join(pathParts...)
+}
+
+func gitCommit(shortVersion bool) (string, error) {
+	args := []string{
+		"rev-parse",
+	}
+	if shortVersion {
+		args = append(args, "--short")
+	}
+	args = append(args, "HEAD")
+	val, valErr := sh.Output("git", args...)
+	return strings.TrimSpace(val), valErr
+}

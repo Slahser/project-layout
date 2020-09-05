@@ -23,10 +23,11 @@ require (
 	github.com/json-iterator/go v1.1.10
 	github.com/magefile/mage v1.10.0
 	github.com/mattn/go-tty v0.0.3 // indirect
+	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/moby/buildkit v0.7.2
 	github.com/natefinch/lumberjack v2.0.0+incompatible
-	github.com/nuclio/nuclio v0.0.0-20200824084355-b57886cf0a7a
+	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000
 	github.com/nuclio/zap v0.0.3
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
@@ -44,7 +45,6 @@ require (
 )
 
 replace (
-
 	// Containous forks
 	github.com/abbot/go-http-auth => github.com/containous/go-http-auth v0.4.1-0.20200324110947-a37a7636d23e
 	github.com/containerd/containerd => github.com/containerd/containerd v1.4.0
@@ -58,10 +58,10 @@ replace (
 	github.com/jaguilar/vt100 => github.com/tonistiigi/vt100 v0.0.0-20190402012908-ad4c4a574305
 	github.com/mailgun/minheap => github.com/containous/minheap v0.0.0-20190809180810-6e71eb837595
 	github.com/mailgun/multibuf => github.com/containous/multibuf v0.0.0-20190809014333-8b6c9a7e6bba
+	github.com/nuclio/nuclio => ./third_party/nuclio
 
 	//replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0
 
-	github.com/nuclio/nuclio => ./third_party/nuclio
 	google.golang.org/grpc => google.golang.org/grpc v1.27.0
 
 	k8s.io/api => k8s.io/api v0.16.9
