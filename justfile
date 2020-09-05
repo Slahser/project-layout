@@ -1,9 +1,11 @@
 #!/usr/bin/env just --justfile
 
+# ==================simple one======================
+
 version := "0.2.7"
 tardir  := "awesomesauce-" + version
 
-alias a := recipe-name
+alias alias_t := recipe-name
 
 # just会在运行真正命令之前，将每个命令打印到标准错误(stderr)，这就是为什么echo 'This is a recipe!'会被打印。
 
@@ -61,4 +63,10 @@ for:
 
 _silent-script:
     echo "silent one"
+
+# ==================complex one======================
+
+
+
+
 
