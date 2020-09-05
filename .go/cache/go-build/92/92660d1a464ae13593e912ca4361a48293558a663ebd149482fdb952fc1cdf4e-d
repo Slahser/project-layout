@@ -1,4 +1,0 @@
-./dockerclient.go
-./mock.go
-./shell.go
-./types.go

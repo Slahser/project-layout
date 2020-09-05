@@ -1,4 +1,0 @@
-./signal.go
-./signal_darwin.go
-./signal_unix.go
-./trap.go

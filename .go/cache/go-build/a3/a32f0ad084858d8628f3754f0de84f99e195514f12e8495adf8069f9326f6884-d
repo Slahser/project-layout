@@ -1,8 +1,0 @@
-./apigateway.go
-./errors.go
-./function.go
-./functionevent.go
-./node.go
-./platform.go
-./project.go
-./types.go

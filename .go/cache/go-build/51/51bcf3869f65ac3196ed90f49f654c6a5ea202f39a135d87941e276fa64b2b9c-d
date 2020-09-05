@@ -1,6 +1,0 @@
-./certificate.go
-./certificate_store.go
-./cipher.go
-./tls.go
-./tlsmanager.go
-./zz_generated.deepcopy.go

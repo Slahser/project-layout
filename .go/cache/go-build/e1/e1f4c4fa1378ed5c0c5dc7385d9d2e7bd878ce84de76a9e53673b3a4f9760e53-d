@@ -1,9 +1,0 @@
-./domains.go
-./duration.go
-./host_resolver.go
-./http_code_range.go
-./logs.go
-./metrics.go
-./route_appender.go
-./tls.go
-./zz_generated.deepcopy.go

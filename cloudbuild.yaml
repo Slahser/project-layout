@@ -3,7 +3,7 @@ steps:
   - name: gcr.io/cloud-builders/docker
     entrypoint: make
     env:
-      - GOOS="fake"   # the Makefile1 looks for these,
+      - GOOS="fake"   # the Makefile looks for these,
       - GOARCH="fake" # even if it won't need them
       - VERSION=$SHORT_SHA
     args:

@@ -21,6 +21,7 @@ require (
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/jpillora/opts v1.2.0
 	github.com/json-iterator/go v1.1.10
+	github.com/magefile/mage v1.10.0
 	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/moby/buildkit v0.7.2
@@ -42,36 +43,28 @@ require (
 	k8s.io/client-go v0.18.8
 )
 
-// Docker v19.03.6
-replace github.com/docker/docker => github.com/docker/engine v1.4.2-0.20200204220554-5f6d6f3f2203
-
 replace (
+
+	// Containous forks
+	github.com/abbot/go-http-auth => github.com/containous/go-http-auth v0.4.1-0.20200324110947-a37a7636d23e
 	github.com/containerd/containerd => github.com/containerd/containerd v1.4.0
+
+	github.com/coreos/etcd => github.com/ozonru/etcd v3.3.20-grpc1.27-origmodule+incompatible
+	github.com/docker/docker => github.com/docker/engine v1.4.2-0.20200204220554-5f6d6f3f2203
+	github.com/go-check/check => github.com/containous/check v0.0.0-20170915194414-ca0bf163426a
 	github.com/golang/protobuf => github.com/golang/protobuf v1.3.5
+	github.com/gorilla/mux => github.com/containous/mux v0.0.0-20181024131434-c33f32e26898
 	github.com/hashicorp/go-immutable-radix => github.com/tonistiigi/go-immutable-radix v0.0.0-20170803185627-826af9ccf0fe
 	github.com/jaguilar/vt100 => github.com/tonistiigi/vt100 v0.0.0-20190402012908-ad4c4a574305
-)
+	github.com/mailgun/minheap => github.com/containous/minheap v0.0.0-20190809180810-6e71eb837595
+	github.com/mailgun/multibuf => github.com/containous/multibuf v0.0.0-20190809014333-8b6c9a7e6bba
 
-//replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0
+	//replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0
 
-replace github.com/nuclio/nuclio => ./third_party/nuclio
-
-replace (
-	github.com/coreos/etcd => github.com/ozonru/etcd v3.3.20-grpc1.27-origmodule+incompatible
+	github.com/nuclio/nuclio => ./third_party/nuclio
 	google.golang.org/grpc => google.golang.org/grpc v1.27.0
-)
 
-replace (
 	k8s.io/api => k8s.io/api v0.16.9
 	k8s.io/apimachinery => k8s.io/apimachinery v0.16.9
 	k8s.io/client-go => k8s.io/client-go v0.16.9
-)
-
-// Containous forks
-replace (
-	github.com/abbot/go-http-auth => github.com/containous/go-http-auth v0.4.1-0.20200324110947-a37a7636d23e
-	github.com/go-check/check => github.com/containous/check v0.0.0-20170915194414-ca0bf163426a
-	github.com/gorilla/mux => github.com/containous/mux v0.0.0-20181024131434-c33f32e26898
-	github.com/mailgun/minheap => github.com/containous/minheap v0.0.0-20190809180810-6e71eb837595
-	github.com/mailgun/multibuf => github.com/containous/multibuf v0.0.0-20190809014333-8b6c9a7e6bba
 )

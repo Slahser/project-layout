@@ -1,6 +1,0 @@
-./config.go
-./http_config.go
-./middlewares.go
-./tcp_config.go
-./udp_config.go
-./zz_generated.deepcopy.go
