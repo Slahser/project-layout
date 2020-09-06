@@ -41,7 +41,7 @@ require (
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 	k8s.io/apimachinery v0.17.3
-	k8s.io/client-go v0.18.8
+	k8s.io/client-go v0.19.0
 )
 
 replace (
