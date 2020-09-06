@@ -18,7 +18,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/magefile/mage/mage"
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
@@ -43,8 +42,6 @@ func init() {
 	// The default is "auto".
 	_ = os.Setenv("GO111MODULE", "on")
 }
-
-func main() { os.Exit(mage.Main()) }
 
 // Install binary
 func Install() error {
