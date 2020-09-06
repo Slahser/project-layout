@@ -8,11 +8,11 @@ before:
     # you may remove this if you don't use vgo
     - go mod download
 builds:
-  - id: "kubectl-kuttl"
-    binary: kubectl-kuttl
-    main: cmd/kubectl-kuttl/main.go
+  - id: "ttctl"
+    binary: ttctl
+    main: cmd/ttctl/main.go
     ldflags:
-      - -s -w -X github.com/kudobuilder/kuttl/pkg/version.gitVersion={{ .Version }} -X github.com/kudobuilder/kuttl/pkg/version.gitCommit={{ .ShortCommit }} -X github.com/kudobuilder/kuttl/pkg/version.buildDate={{ .Date }}
+      - -s -w -X github.com/Slahser/coup-de-grace/pkg/version.gitVersion={{ .Version }} -X github.com/Slahser/coup-de-grace/pkg/version.gitCommit={{ .ShortCommit }} -X github.com/Slahser/coup-de-grace/pkg/version.buildDate={{ .Date }}
     goos:
       - linux
       - darwin
@@ -23,9 +23,9 @@ builds:
       - ppc64le
       - s390x
 archives:
-  - id: kubectl-kuttl-tarball
+  - id: ttctl-tarball
     builds:
-      - kubectl-kuttl
+      - ttctl
     replacements:
       386: i386
       amd64: x86_64
@@ -33,27 +33,27 @@ archives:
   - id: binaries
     builds:
       - manager
-      - kubectl-kuttl
+      - ttctl
     replacements:
       386: i386
       amd64: x86_64
     format: binary
 brews:
-  - name: kuttl-cli
+  - name: ttctl
     tap:
-      owner: kudobuilder
+      owner: Slahser
       name: homebrew-tap
     commit_author:
-      name: kudoreleasebot
-      email: release@kudo.dev
+      name: ttreleasebot
+      email: skyslahser@gmail.com
     skip_upload: auto
     folder: Formula
-    homepage: https://kudo.dev
+    homepage: https://slahser.com
     description: Interact with KUTTL via the kubectl plugin
     dependencies:
-      - kubernetes-cli
+      -
     install: |
-      bin.install "kubectl-kuttl"
+      bin.install "ttctl"
 checksum:
   name_template: "checksums.txt"
 snapshot:
@@ -61,8 +61,8 @@ snapshot:
 
 release:
   github:
-    owner: kudobuilder
-    name: kuttl
+    owner: Slahser
+    name: ttctl
   draft: false
   prerelease: auto
   name_template: "{{.ProjectName}}-v{{.Version}}"
