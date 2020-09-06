@@ -1,6 +1,8 @@
 // +build mage
+
 //https://magefile.org/
 //https://github.com/magefile/awesome-mage
+
 package main
 
 import (
