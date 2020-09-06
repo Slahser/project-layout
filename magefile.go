@@ -16,19 +16,18 @@ import (
 	"sync"
 	"time"
 
+	"github.com/magefile/mage/mage"
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
 
-// allow user to override go executable by running as GOEXE=xxx make ... on unix-like systems
-var goexe = "go"
-var docker = sh.RunCmd("docker")
-
 var (
+	goexe        = "go"
+	docker       = sh.RunCmd("docker")
 	packageName  = "github.com/Slahser/coup-de-grace"
-	pkgPrefixLen = len("github.com/Slahser/coup-de-grace")
+	pkgPrefixLen = len(packageName)
 	noGitLdflags = "-X $PACKAGE/common/slahser.buildDate=$BUILD_DATE"
-	ldflags      = "-X $PACKAGE/common/slahser.commitHash=$COMMIT_HASH "+ noGitLdflags
+	ldflags      = "-X $PACKAGE/common/slahser.commitHash=$COMMIT_HASH " + noGitLdflags
 	pkgs         []string
 	pkgsInit     sync.Once
 )
@@ -42,6 +41,8 @@ func init() {
 	// The default is "auto".
 	_ = os.Setenv("GO111MODULE", "on")
 }
+
+func main() { os.Exit(mage.Main()) }
 
 // Install binary
 func Install() error {
