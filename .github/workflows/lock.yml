@@ -1,4 +1,5 @@
-name: Lock closed
+name: Lock Closed
+
 on:
   schedule:
     - cron: '0 0 * * *'
