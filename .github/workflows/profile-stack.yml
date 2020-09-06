@@ -11,3 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: Matt-Gleich/profile_stack@master
+        with:
+          path: build/ci/techstack.yml
+          badges: true
+          technology_emoji: 👨🏻‍💻
+          project_emoji: ✨
