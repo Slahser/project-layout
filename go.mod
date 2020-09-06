@@ -16,7 +16,7 @@ require (
 	github.com/go-playground/validator/v10 v10.3.0
 	github.com/goproxy/goproxy v0.1.5
 	github.com/guptarohit/asciigraph v0.5.0
-	github.com/hashicorp/go-multierror v1.0.0
+	github.com/hashicorp/go-multierror v1.1.0
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/jpillora/opts v1.2.0
