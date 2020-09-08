@@ -8,7 +8,7 @@ require (
 	github.com/coreos/etcd v3.3.24+incompatible
 	github.com/deckarep/gosx-notifier v0.0.0-20180201035817-e127226297fb
 	github.com/dimiro1/banner v1.0.0
-	github.com/felixge/fgprof v0.9.0
+	github.com/felixge/fgprof v0.9.1
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-errors/errors v1.1.1
