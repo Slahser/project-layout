@@ -14,7 +14,7 @@ require (
 	github.com/go-errors/errors v1.1.1
 	github.com/go-openapi/strfmt v0.19.5 // indirect
 	github.com/go-playground/validator/v10 v10.3.0
-	github.com/goproxy/goproxy v0.1.5
+	github.com/goproxy/goproxy v0.2.1
 	github.com/guptarohit/asciigraph v0.5.0
 	github.com/hashicorp/go-multierror v1.1.0
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
@@ -37,7 +37,6 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/v3io/version-go v0.0.2
 	go.uber.org/zap v1.10.0
-	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 	k8s.io/apimachinery v0.19.0
