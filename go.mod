@@ -42,9 +42,8 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/thoas/go-funk v0.7.0
 	github.com/v3io/version-go v0.0.2
-	go.uber.org/zap v1.10.0
+	go.uber.org/zap v1.16.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
-	gopkg.in/yaml.v2 v2.3.0 // indirect
 	k8s.io/apimachinery v0.19.0
 	k8s.io/client-go v0.19.0
 	moul.io/http2curl v1.0.0 // indirect
