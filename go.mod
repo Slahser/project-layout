@@ -18,7 +18,7 @@ require (
 	github.com/go-playground/validator/v10 v10.3.0
 	github.com/goproxy/goproxy v0.2.1
 	github.com/gorilla/websocket v1.4.2
-	github.com/guptarohit/asciigraph v0.5.0
+	github.com/guptarohit/asciigraph v0.5.1
 	github.com/hashicorp/go-multierror v1.1.0
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
@@ -44,7 +44,6 @@ require (
 	github.com/v3io/version-go v0.0.2
 	go.uber.org/zap v1.10.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
-	gopkg.in/yaml.v2 v2.3.0 // indirect
 	k8s.io/apimachinery v0.19.0
 	k8s.io/client-go v0.19.0
 	moul.io/http2curl v1.0.0 // indirect
