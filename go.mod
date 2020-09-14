@@ -5,7 +5,7 @@ go 1.15
 require (
 	github.com/c-bata/go-prompt v0.2.3
 	github.com/containous/traefik/v2 v2.2.11
-	github.com/coreos/etcd v3.3.24+incompatible
+	github.com/coreos/etcd v3.3.25+incompatible
 	github.com/deckarep/gosx-notifier v0.0.0-20180201035817-e127226297fb
 	github.com/dimiro1/banner v1.0.0
 	github.com/felixge/fgprof v0.9.1
@@ -44,7 +44,6 @@ require (
 	github.com/v3io/version-go v0.0.2
 	go.uber.org/zap v1.10.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
-	gopkg.in/yaml.v2 v2.3.0 // indirect
 	k8s.io/apimachinery v0.19.0
 	k8s.io/client-go v0.19.0
 	moul.io/http2curl v1.0.0 // indirect
