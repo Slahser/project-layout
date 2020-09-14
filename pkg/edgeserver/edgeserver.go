@@ -1,8 +1,8 @@
 package edgeserver
 
 import (
+	"fmt"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/fvbock/endless"
@@ -11,10 +11,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-errors/errors"
 	"github.com/gorilla/websocket"
-	"github.com/thoas/go-funk"
+	"github.com/jinzhu/configor"
+	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
-
-	ophelper "aliyun.com/opur/opur/pkg/helper"
+	"go.uber.org/zap/zapcore"
 )
 
 /**
@@ -25,150 +25,84 @@ HTTP Server需配置connection keep-alive。
 请求超时时间设置为15分钟以上。
 HTTP Server需要在25秒内启动完毕。
 */
-
 var (
-	ListeningPort = ":8080"
-	RunningMode   = gin.DebugMode
-
-	ginModeArray = []string{
-		gin.DebugMode,
-		gin.TestMode,
-		gin.ReleaseMode,
-	}
-
-	Router *gin.Engine
-
+	Logger   *zap.Logger
+	Router   *gin.Engine
 	UpGrader = websocket.Upgrader{
 		CheckOrigin: func(r *http.Request) bool {
 			return true
 		},
 	}
 
-	//path /user/:name
-	TemplateHTTPGetHandlerFunc gin.HandlerFunc = func(context *gin.Context) {
-		name := context.Param("name")
-		zap.S().Info("name is : " + name)
-		context.String(http.StatusOK, "Hello %s", name)
-	}
+)
 
-	//body name=manu&message=this_is_great
-	TemplateHTTPPostHandlerFunc gin.HandlerFunc = func(context *gin.Context) {
-		//POSIX
-		//sh.Exec(context.Param("dir"))
-		name := context.PostForm("name")
-		message := context.PostForm("message")
-		zap.S().Debug("name is : " + name)
-		context.JSON(http.StatusOK, name+message)
-	}
+const (
+	ConfigPath    = "./config.toml"
+	ListeningPort = ":8080"
 
-	//path /ping
-	TemplateWSGetHandlerFunc gin.HandlerFunc = func(context *gin.Context) {
-		wsConn := GetWSConn(context)
-		for {
-			mt, message, err := wsConn.ReadMessage()
-			if err != nil {
-				break
-			}
-			if string(message) == "ping" {
-				message = []byte("pong")
-			}
-			zap.S().Info("websocket write back pong")
-			err = wsConn.WriteMessage(mt, message)
-			if err != nil {
-				break
-			}
-		}
-	}
+	ServerReadTimeOut=180
+	ServerWriteTimeOut=180
+	ServerMaxHeaderBytes=1 << 20
+
+	LogFile="./logs/edgeserver.log"
+	LogMaxSize = 10
+	LogMaxBackups = 5
+	LogMaxAge =30
+	LoggerName="edgeserver"
 )
 
 type EdgeServer struct {
-	config Config
+	Config Config
 }
 
 type Config struct {
-	MetaConfig
-	//LogConfig Log
-	ServerConfig
+	Env     string `required:"true"`
+	Org     string `required:"true"`
+	Project string `required:"true"`
 }
 
-type MetaConfig struct {
-	Env      string
-	Org      string
-	Project  string
-	FuncName string
+//Init
+func Init() *EdgeServer {
+	var Config Config
+
+	if err := configor.Load(&Config, ConfigPath); err != nil {
+		fmt.Println(errors.Errorf("parse edgeserver config.toml error %w", err))
+	}
+
+	return NewForConfigOrDie(&Config)
 }
 
-type ServerConfig struct {
-	ListeningPort int
-	RunningMode   string
-}
-
+//NewForConfigOrDie
 func NewForConfigOrDie(config *Config) *EdgeServer {
 	server, err := NewForConfig(config)
 	if err != nil {
-		panic(errors.Errorf("generate edge server error %w", err))
+		fmt.Println(errors.Errorf("init edgeserver error %w", err))
 	}
 	return server
 }
 
+//NewForConfig
 func NewForConfig(config *Config) (*EdgeServer, error) {
 	c := *config
-
-	//TODO 读etcd
-	// 检查etcd /dev/slahser/ttproj 下,端口是否冲突
-
-	//TODO 写入etcd
-	// k => /dev/slahser/ttproj/edgefunc1/port
-	// v=> config.ServerConfig.ListeningPort
-
 	server := &EdgeServer{c}
-	server.initRouteAndMw()
+	if err := server.tunning(); err != nil {
+		return nil, err
+	}
 	return server, nil
 }
 
-func (server *EdgeServer) initRouteAndMw() {
-	//TODO
-	zap.ReplaceGlobals(ophelper.InitLogger())
-	if server.config.RunningMode != "" && funk.ContainsString(ginModeArray, server.config.RunningMode) {
-		gin.SetMode(server.config.RunningMode)
-	} else {
-		gin.SetMode(RunningMode)
-	}
-	Router = gin.New()
-	Router.Use(gin.Logger())
-	Router.Use(gin.Recovery())
-	Router.Use(ginlimits.RequestSizeLimiter(10))
-	Router.Use(ginzap.Ginzap(ophelper.Logger, time.RFC3339, true))
-	Router.Use(ginzap.RecoveryWithZap(ophelper.Logger, true))
-	//Router.NoMethod(NoMethodHandler)
-	//Router.NoRoute(NoRouteHandler)
-}
-
-func GetWSConn(c *gin.Context) *websocket.Conn {
-	wsConn, err := UpGrader.Upgrade(c.Writer, c.Request, nil)
-	if err != nil {
-		panic(errors.Errorf("get websocket connection error %w", err))
-	}
-	return wsConn
-}
-
+//Start
 func (server *EdgeServer) Start() {
 
-	endless.DefaultReadTimeOut = 10 * time.Second
-	endless.DefaultWriteTimeOut = 10 * time.Second
-	endless.DefaultMaxHeaderBytes = 1 << 20
-
-	if server.config.ListeningPort != 0 {
-		ListeningPort = ":" + strconv.Itoa(server.config.ListeningPort)
-	}
-
-	err := endless.ListenAndServe(ListeningPort, Router)
-	if err != nil {
-		panic(errors.Errorf("serve edge server error %w", err))
+	endless.DefaultReadTimeOut = ServerReadTimeOut * time.Second
+	endless.DefaultWriteTimeOut = ServerWriteTimeOut * time.Second
+	endless.DefaultMaxHeaderBytes = ServerMaxHeaderBytes
+	if err := endless.ListenAndServe(ListeningPort, Router); err != nil {
+		fmt.Println(errors.Errorf("serve edgeserver error %w", err))
 	}
 }
 
-//HTTP just like a register step,写入/funcName/http/path
+//HTTPGet
 func (server *EdgeServer) HTTPGet(path string, handlerFunc gin.HandlerFunc) {
 
 	//TODO 读etcd
@@ -180,7 +114,7 @@ func (server *EdgeServer) HTTPGet(path string, handlerFunc gin.HandlerFunc) {
 	// v=> 暂时置空,日后留作扩展
 }
 
-//HTTP just like a register step,写入/funcName/http/path
+//HTTPPost
 func (server *EdgeServer) HTTPPost(path string, handlerFunc gin.HandlerFunc) {
 	//TODO 读etcd
 	// 检查etcd /dev/slahser/ttproj/edgefunc1/path/<path> 是否存在
@@ -192,7 +126,7 @@ func (server *EdgeServer) HTTPPost(path string, handlerFunc gin.HandlerFunc) {
 	// v=> 暂时置空,日后留作扩展
 }
 
-//WS just like a register step,写入/funcName/ws/path
+//WSGet
 func (server *EdgeServer) WSGet(path string, handlerFunc gin.HandlerFunc) {
 
 	//TODO 读etcd
@@ -205,17 +139,67 @@ func (server *EdgeServer) WSGet(path string, handlerFunc gin.HandlerFunc) {
 	// v=> 暂时置空,日后留作扩展
 }
 
-func Init() *EdgeServer {
-	//TODO 此处应该是SDK隐藏,server读取
-	return NewForConfigOrDie(&Config{
-		MetaConfig: MetaConfig{
-			Env:      "dev",
-			Org:      "slahser",
-			Project:  "ttproj",
-			FuncName: "edgefunc1",
-		},
-		ServerConfig: ServerConfig{
-			ListeningPort: 8080,
-		},
-	})
+//GetWSConn
+func GetWSConn(c *gin.Context) *websocket.Conn {
+	wsConn, err := UpGrader.Upgrade(c.Writer, c.Request, nil)
+	if err != nil {
+		fmt.Println(errors.Errorf("get websocket connection error %w", err))
+	}
+	return wsConn
+}
+
+func (server *EdgeServer) tunning() error {
+
+	zap.ReplaceGlobals(InitLogger())
+
+	gin.SetMode(gin.DebugMode)
+
+	Router = gin.New()
+	Router.Use(gin.Logger())
+	Router.Use(gin.Recovery())
+	Router.Use(ginlimits.RequestSizeLimiter(10))
+	Router.Use(ginzap.Ginzap(Logger, time.RFC3339, true))
+	Router.Use(ginzap.RecoveryWithZap(Logger, true))
+	Router.NoRoute(NoRouteHandlerFunc)
+	Router.NoMethod(NoMethodHandlerFunc)
+	return nil
+}
+
+var NoRouteHandlerFunc gin.HandlerFunc = func(context *gin.Context)  {
+	context.JSON(http.StatusNotFound, "NoRoute")
+}
+
+var NoMethodHandlerFunc gin.HandlerFunc = func(context *gin.Context)  {
+	context.JSON(http.StatusMethodNotAllowed,"NoMethod")
+}
+
+//InitLogger
+func InitLogger() *zap.Logger {
+	writeSyncer := getLogWriter()
+	encoder := getEncoder()
+	core := zapcore.NewCore(encoder, writeSyncer, zapcore.DebugLevel)
+
+	Logger = zap.New(core, zap.AddCaller())
+	Logger.Named(LoggerName)
+	return Logger
+}
+
+//getEncoder
+func getEncoder() zapcore.Encoder {
+	encoderConfig := zap.NewProductionEncoderConfig()
+	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+	encoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
+	return zapcore.NewJSONEncoder(encoderConfig)
+}
+
+//getLogWriter
+func getLogWriter() zapcore.WriteSyncer {
+	lumberJackLogger := &lumberjack.Logger{
+		Filename:   LogFile,
+		MaxSize:    LogMaxSize,
+		MaxBackups: LogMaxBackups,
+		MaxAge:     LogMaxAge,
+		Compress:   true,
+	}
+	return zapcore.AddSync(lumberJackLogger)
 }

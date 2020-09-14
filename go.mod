@@ -10,15 +10,19 @@ require (
 	github.com/dimiro1/banner v1.0.0
 	github.com/felixge/fgprof v0.9.1
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
+	github.com/gin-contrib/size v0.0.0-20200815104238-dc717522c4e2
+	github.com/gin-contrib/zap v0.0.1
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-errors/errors v1.1.1
 	github.com/go-openapi/strfmt v0.19.5 // indirect
 	github.com/go-playground/validator/v10 v10.3.0
 	github.com/goproxy/goproxy v0.2.1
+	github.com/gorilla/websocket v1.4.2
 	github.com/guptarohit/asciigraph v0.5.0
 	github.com/hashicorp/go-multierror v1.1.0
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
+	github.com/jinzhu/configor v1.2.0
 	github.com/jpillora/opts v1.2.0
 	github.com/json-iterator/go v1.1.10
 	github.com/magefile/mage v1.10.0
@@ -29,18 +33,21 @@ require (
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000
 	github.com/nuclio/zap v0.0.3
+	github.com/parnurzeal/gorequest v0.2.16
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/serialx/hashring v0.0.0-20200727003509-22c0c7ab6b1b
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/pflag v1.0.5
+	github.com/thoas/go-funk v0.7.0
 	github.com/v3io/version-go v0.0.2
 	go.uber.org/zap v1.10.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
-	k8s.io/client-go v0.19.0
 	k8s.io/apimachinery v0.19.0
+	k8s.io/client-go v0.19.0
+	moul.io/http2curl v1.0.0 // indirect
 )
 
 replace (
