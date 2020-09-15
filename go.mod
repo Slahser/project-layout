@@ -5,7 +5,7 @@ go 1.15
 require (
 	github.com/c-bata/go-prompt v0.2.3
 	github.com/containous/traefik/v2 v2.2.11
-	github.com/coreos/etcd v3.3.24+incompatible
+	github.com/coreos/etcd v3.3.25+incompatible
 	github.com/deckarep/gosx-notifier v0.0.0-20180201035817-e127226297fb
 	github.com/dimiro1/banner v1.0.0
 	github.com/felixge/fgprof v0.9.1
@@ -18,7 +18,7 @@ require (
 	github.com/go-playground/validator/v10 v10.3.0
 	github.com/goproxy/goproxy v0.2.1
 	github.com/gorilla/websocket v1.4.2
-	github.com/guptarohit/asciigraph v0.5.0
+	github.com/guptarohit/asciigraph v0.5.1
 	github.com/hashicorp/go-multierror v1.1.0
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
@@ -42,10 +42,10 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/thoas/go-funk v0.7.0
 	github.com/v3io/version-go v0.0.2
-	go.uber.org/zap v1.10.0
+	go.uber.org/zap v1.16.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	k8s.io/apimachinery v0.19.1
-	k8s.io/client-go v0.19.0
+	k8s.io/client-go v0.19.1
 	moul.io/http2curl v1.0.0 // indirect
 )
 
