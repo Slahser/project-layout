@@ -45,7 +45,7 @@ require (
 	go.uber.org/zap v1.16.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	k8s.io/apimachinery v0.19.1
-	k8s.io/client-go v0.19.1
+	k8s.io/client-go v0.19.2
 	moul.io/http2curl v1.0.0 // indirect
 )
 
