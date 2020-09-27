@@ -1,0 +1,10 @@
+name: tt
+output_binary: /build/package
+build_command: go build -o {{.output_binary}}
+run_command: '{{.output_binary}}'
+runtime_image: golang:1.14
+debugger_enabled: true
+debugger_port: 8888
+expose_ports: []
+networks: []
+environment: []

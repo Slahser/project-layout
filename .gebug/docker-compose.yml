@@ -1,0 +1,11 @@
+version: '3'
+services:
+  gebug-tt:
+    build:
+      context: ..
+      dockerfile: .gebug/Dockerfile
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - ../:/src:ro
+      - 8888:8888
