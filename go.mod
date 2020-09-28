@@ -28,12 +28,11 @@ require (
 	github.com/json-iterator/go v1.1.10
 	github.com/magefile/mage v1.10.0
 	github.com/mattn/go-tty v0.0.3 // indirect
-	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/moby/buildkit v0.7.2
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000
-	github.com/nuclio/zap v0.0.3
+	github.com/nuclio/zap v0.0.4
 	github.com/parnurzeal/gorequest v0.2.16
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
