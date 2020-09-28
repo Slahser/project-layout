@@ -4,7 +4,6 @@ go 1.15
 
 require (
 	github.com/c-bata/go-prompt v0.2.3
-	github.com/cch123/gomod-conflict-detect v0.0.0-20200429095045-c20632c5c90f // indirect
 	github.com/containous/traefik/v2 v2.2.11
 	github.com/coreos/etcd v3.3.25+incompatible
 	github.com/deckarep/gosx-notifier v0.0.0-20180201035817-e127226297fb
@@ -41,7 +40,6 @@ require (
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/pflag v1.0.5
-	github.com/stretchr/testify v1.6.1
 	github.com/v3io/version-go v0.0.2
 	go.uber.org/zap v1.16.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
