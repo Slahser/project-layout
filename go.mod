@@ -3,7 +3,7 @@ module github.com/Slahser/coup-de-grace
 go 1.15
 
 require (
-	github.com/c-bata/go-prompt v0.2.3
+	github.com/c-bata/go-prompt v0.2.5
 	github.com/containous/traefik/v2 v2.2.11
 	github.com/coreos/etcd v3.3.25+incompatible
 	github.com/deckarep/gosx-notifier v0.0.0-20180201035817-e127226297fb
@@ -26,7 +26,6 @@ require (
 	github.com/jpillora/opts v1.2.0
 	github.com/json-iterator/go v1.1.10
 	github.com/magefile/mage v1.10.0
-	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/moby/buildkit v0.7.2
@@ -35,7 +34,6 @@ require (
 	github.com/nuclio/zap v0.0.3
 	github.com/parnurzeal/gorequest v0.2.16
 	github.com/pkg/errors v0.9.1
-	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/serialx/hashring v0.0.0-20200727003509-22c0c7ab6b1b
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cobra v1.0.0
