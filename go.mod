@@ -15,7 +15,7 @@ require (
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-errors/errors v1.1.1
 	github.com/go-openapi/strfmt v0.19.5 // indirect
-	github.com/go-playground/validator/v10 v10.3.0
+	github.com/go-playground/validator/v10 v10.4.1
 	github.com/goproxy/goproxy v0.2.1
 	github.com/gorilla/websocket v1.4.2
 	github.com/guptarohit/asciigraph v0.5.1
@@ -31,9 +31,11 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/moby/buildkit v0.7.2
 	github.com/natefinch/lumberjack v2.0.0+incompatible
-	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000
+	github.com/nuclio/logger v0.0.1 // indirect
+	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000 // indirect
 	github.com/nuclio/zap v0.0.3
 	github.com/parnurzeal/gorequest v0.2.16
+	github.com/pavius/zap v1.4.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/serialx/hashring v0.0.0-20200727003509-22c0c7ab6b1b
