@@ -22,7 +22,7 @@ require (
 	github.com/hashicorp/go-multierror v1.1.0
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
-	github.com/jinzhu/configor v1.2.0
+	github.com/jinzhu/configor v1.2.1
 	github.com/jpillora/opts v1.2.0
 	github.com/json-iterator/go v1.1.10
 	github.com/magefile/mage v1.10.0
@@ -31,9 +31,11 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/moby/buildkit v0.7.2
 	github.com/natefinch/lumberjack v2.0.0+incompatible
-	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000
+	github.com/nuclio/logger v0.0.1 // indirect
+	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000 // indirect
 	github.com/nuclio/zap v0.0.3
 	github.com/parnurzeal/gorequest v0.2.16
+	github.com/pavius/zap v1.4.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/serialx/hashring v0.0.0-20200727003509-22c0c7ab6b1b
