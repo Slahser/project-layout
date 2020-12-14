@@ -31,13 +31,15 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/moby/buildkit v0.7.2
 	github.com/natefinch/lumberjack v2.0.0+incompatible
-	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000
+	github.com/nuclio/logger v0.0.1 // indirect
+	github.com/nuclio/nuclio v0.0.0-00010101000000-000000000000 // indirect
 	github.com/nuclio/zap v0.0.3
 	github.com/parnurzeal/gorequest v0.2.16
+	github.com/pavius/zap v1.4.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/serialx/hashring v0.0.0-20200727003509-22c0c7ab6b1b
-	github.com/sirupsen/logrus v1.6.0
+	github.com/sirupsen/logrus v1.7.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/pflag v1.0.5
 	github.com/v3io/version-go v0.0.2
