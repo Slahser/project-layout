@@ -42,7 +42,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 #RUN go test -v
 
 #FROM scratch AS bin_base
-FROM alpine:20200917 AS bin_base
+FROM alpine:20210804 AS bin_base
 
 COPY --from=build_base /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 COPY --from=build_base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
