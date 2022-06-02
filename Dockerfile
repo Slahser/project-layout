@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:experimental
-FROM golang:1.15-alpine AS build_base
+FROM golang:1.18.3-alpine AS build_base
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 RUN apk add --no-cache ca-certificates upx git tzdata libc6-compat make build-base
