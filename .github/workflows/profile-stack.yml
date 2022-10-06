@@ -9,7 +9,7 @@ jobs:
   profile_stack:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.1.0
       - uses: Matt-Gleich/profile_stack@master
         with:
           path: build/ci/techstack.yml
